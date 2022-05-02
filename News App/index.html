@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>News App</title>
+    <style>
+    
+      #in,#ch,#us,#uk,#nz{
+        font-size: 18px;
+        color: black;
+        background-color:teal;
+        cursor: pointer;
+        text-align: start;
+        display: grid;
+        gap: 20px;
+        
+      }
+      #search_input{
+        width: 80%;
+        height: 30px;
+        border-radius: 5px;
+        
+      }
+      a{
+        font-size: 18px;
+        
+      }
+      #main{
+        /* display: grid; */
+        display: flex;
+      }
+
+
+    </style>
+  </head>
+  <body>
+    <div id="navbar">
+    <a href="news.html">News APP</a>
+    <input type="text" id="search_input" placeholder="Search News" onkeypress="searchNews(event)">
+
+   
+
+    <!-- Give Navbar with id "navbar"  -->
+    <!-- Navbar will have input with id search_input and a link to home page i.e. index.html -->
+    <!-- Sidebar will have id "sidebar"  -->
+    <!-- Give link to top headlines of countries in sidebar with id as their country codes 
+    india :- in
+    china :- ch
+    usa :- us
+    uk : uk
+    Newzeland :- nz -->
+  </div>
+   <div id="main">
+   <div id="sidebar"> <h3>countries</h3>
+    <button onclick="india()" id="in">india</button>
+    <button onclick="china()" id="ch">china</button>
+     <button onclick="USA()" id="us">usa</button>
+     <button onclick="Uk()" id="uk">Uk</button>
+     <button onclick="Newzeland()" id="nz">Newzeland</button>
+    </div>
+ 
+     <div id="cont"></div>
+
+    </div>
+    <!-- Append results inside div with id "results"  -->
+    <!-- News divs will have class "news"  -->
+  </body>
+</html>
+<script src="index.js"></script>

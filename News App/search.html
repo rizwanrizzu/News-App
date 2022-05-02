@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Search results</title>
+  </head>
+  <body>
+
+    <div id="navbar">
+     
+      <input type="text" id="query" placeholder="Search">
+    </div>
+    <!-- Same navbar with same functionality  -->
+
+    <!-- Append results inside div with id "results"  -->
+    <!-- News divs will have class "news"  -->
+    <div id="result"></div>
+  </body>
+</html>
+<script>
+  let result=document.getElementById("result")
+
+  function getNews(){
+    let search = JSON.parse(localStorage.getItem("search"))
+
+    let query = document.getElementById("query").value = search
+
+const url = ` https://masai-mock-api.herokuapp.com/news?q=${query}`
+fetch(url)
+.then((res)=>{
+    return res.json();
+})
+.then((res)=>{
+   console.log(res)
+   let data = res.articles
+   result.innerText = null
+   appendData(data)
+ 
+})
+}
+
+getNews()
+
+function appendData(data){
+    data.map(elem =>{
+     
+    let div = document.createElement("div")
+    div.style.border = "1px solid"
+    div.style.cursor = "pointer"
+    div.addEventListener("click",()=>{
+      localStorage.setItem("news",JSON.stringify(elem))
+      window.location.href = "news.html"
+    })
+
+    let img = document.createElement("img")
+    img.src = elem.urlToImage
+    img.style.height = "150px"
+    img.style.width = "150px"
+    
+    let headline = document.createElement("h3")
+    headline.innerText = elem.title
+
+    let para = document.createElement("p")
+    para.innerText = elem.description
+
+    div.append(img,headline,para)
+    result.append(div)
+
+
+    })
+}
+
+function searchNews(event){
+
+    let query = document.getElementById("search_input").value
+
+    if(event.key==="Enter"){
+        localStorage.setItem("search",JSON.stringify(query))
+        window.location.href = "search.html"
+    }
+}
+</script>
+
